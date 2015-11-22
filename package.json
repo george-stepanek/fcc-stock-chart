@@ -6,7 +6,7 @@
     "url": "git+https://github.com/george-stepanek/fcc-nightlife"
   },
   "scripts": {
-  "start": "node server.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "dotenv": "^1.2.0",

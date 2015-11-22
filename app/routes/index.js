@@ -1,7 +1,7 @@
 'use strict';
 
 var path = process.cwd();
-var ClickHandler = require(path + '/app/controllers/clickHandler.server.js');
+var handler = require(path + '/app/controllers/handler.server.js');
 
 module.exports = function (app, passport) {
 
@@ -10,8 +10,6 @@ module.exports = function (app, passport) {
 			return next();
 		}
 	}
-
-	var clickHandler = new ClickHandler();
 
 	app.route('/')
 		.get(function (req, res) {
@@ -38,9 +36,10 @@ module.exports = function (app, passport) {
 			failureRedirect: '/'
 		}));
 /*
+	var handler = new Handler();
 	app.route('/api/:id/clicks')
-		.get(isLoggedIn, clickHandler.getClicks)
-		.post(isLoggedIn, clickHandler.addClick)
-		.delete(isLoggedIn, clickHandler.resetClicks);
+		.get(isLoggedIn, handler.getClicks)
+		.post(isLoggedIn, handler.addClick)
+		.delete(isLoggedIn, handler.resetClicks);
 */
 };

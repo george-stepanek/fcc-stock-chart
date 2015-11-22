@@ -6,10 +6,7 @@ var Schema = mongoose.Schema;
 var User = new Schema({
 	id: String,
 	displayName: String,
-	photo: String,
-    nbrClicks: {
-        clicks: Number
-    }
+	photo: String
 });
 
 module.exports = mongoose.model('User', User);

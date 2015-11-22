@@ -2,7 +2,22 @@
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
 @import url(//fonts.googleapis.com/css?family=Limelight);
 
-.navbar-header, #display-name {
+.navbar-header {
     font-family: Limelight, sans-serif;
     font-size: 175%;
+}
+input {
+	width: 100%;
+	padding: 5px;
+}
+td {
+	width: 100%;
+	vertical-align: center;
+}
+.spacer, img {
+	padding-right: 15px;
+}
+.container-fluid {
+    max-width: 1000px;
+	padding: 30px; 
 }
