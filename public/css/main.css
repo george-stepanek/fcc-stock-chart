@@ -1,3 +1,7 @@
+@import url(//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css);
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
+@import url(//fonts.googleapis.com/css?family=Limelight);
+
 /********* Fonts **********/
 
 @font-face {
@@ -28,6 +32,10 @@ header {
 	height: 56px;
 	margin: 0 0 14px 0;
 	text-align: center;
+}
+
+h1 {
+  font-family: Limelight, sans-serif;
 }
 
 p {
