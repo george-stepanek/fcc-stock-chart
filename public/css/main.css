@@ -2,9 +2,9 @@
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
 @import url(//fonts.googleapis.com/css?family=Limelight);
 
-.navbar-header {
+.navbar-text {
     font-family: Limelight, sans-serif;
-    font-size: 175%;
+    font-size: 200%;
 }
 input {
 	width: 100%;
@@ -12,12 +12,23 @@ input {
 }
 td {
 	width: 100%;
-	vertical-align: center;
 }
-.spacer, img {
+.spacer {
 	padding-right: 15px;
 }
 .container-fluid {
     max-width: 1000px;
 	padding: 30px; 
+}
+img {
+  height: 50px;
+  width: 50px;
+  border-radius: 20%;
+  margin-right: 10px;
+}
+.row {
+    padding-top: 10px;
+ }
+h4 {
+    margin-top: 0;
 }
