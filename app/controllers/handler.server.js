@@ -15,8 +15,16 @@ function Handler () {
 		});
 		
 		yelp.search({ term: 'bars', location: req.params.city, limit: 10, offset: req.query.offset })
-		.then(function (result) {
-			res.json(result);
+		.then(function (bars) {
+			Users.find({}).exec(function (err, users) { 
+				if (err) { throw err; }
+				for (var i = 0; i < bars.businesses.length; i++) {
+					bars.businesses[i]["going"] = users.filter(function (value) {
+						return value.goingTo == bars.businesses[i].id;
+					}).length;
+				}
+				res.json(bars); 
+			});
 		})
 		.catch(function (err) {
 			console.error(err);
@@ -25,11 +33,8 @@ function Handler () {
 	};
 	
 	this.addGoing = function (req, res) {
-		
-	}
-	
-	this.removeGoing = function (req, res) {
-		
+		Users.findOneAndUpdate({ 'id': req.user.id }, { 'goingTo': req.query.goingto })
+			.exec(function (err, result) { if (err) { throw err; } res.json(result); });
 	}
 }
 module.exports = Handler;

@@ -39,6 +39,5 @@ module.exports = function (app, passport) {
 	var handler = new Handler();
 	app.route('/api/bars/:city')
 		.get(handler.getBars)
-		.post(handler.addGoing)
-		.delete(handler.removeGoing);
+		.post(handler.addGoing);
 };
