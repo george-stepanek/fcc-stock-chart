@@ -1,9 +1,8 @@
 @import url(//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css);
-@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
-@import url(//fonts.googleapis.com/css?family=Limelight);
+@import url(//fonts.googleapis.com/css?family=Squada+One);
 
 .navbar-text {
-    font-family: Limelight, sans-serif;
+    font-family: 'Squada One', sans-serif;
     font-size: 200%;
 }
 input {
@@ -20,15 +19,8 @@ td {
     max-width: 1000px;
 	padding: 30px; 
 }
-img {
-  height: 50px;
-  width: 50px;
-  border-radius: 20%;
-  margin-right: 10px;
-}
-.row {
-    padding-top: 10px;
- }
-h4 {
-    margin-top: 0;
+.stock-button {
+    margin-top: 15px;
+    margin-right: 15px;
+    font-size: 120%;
 }
