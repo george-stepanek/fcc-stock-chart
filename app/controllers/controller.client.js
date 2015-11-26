@@ -4,7 +4,7 @@
    
    google.load("visualization", "1", {packages:["corechart"]});
    
-   var colors = ['blue', 'red', 'green', 'purple'];
+   var colors = ['blue', 'red', 'green', 'purple', 'orange'];
    var stocks = [];
    
    $('input').focus();
@@ -23,7 +23,7 @@
          stocks.shift();
          colors.push(colors.shift());
       }
-      stocks.push($('input').val());
+      stocks.push($('input').val().toUpperCase());
       $('input').val('');
       displayStocks();
    }
