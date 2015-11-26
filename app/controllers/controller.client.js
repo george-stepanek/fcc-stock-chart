@@ -2,7 +2,7 @@
 
 (function () {
    
-   google.load("visualization", "1", {packages:["corechart"], "callback" : displayStocks});
+   google.load("visualization", "1", {packages:["corechart"]});
    
    var colors = ['blue', 'red', 'green', 'purple'];
    var stocks = [];
@@ -34,8 +34,10 @@
       $('#stock-buttons').empty();
       
       for(var stock = 0; stock < stocks.length; stock++ ) {
+         
          $('#stock-buttons').html($('#stock-buttons').html() + '<button id="' + stock + '" class="btn stock-button" style="color: ' + 
             colors[stock] + '">' + stocks[stock] + '&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove-sign"></span></button>');
+            
          $('.stock-button').click(function () {
             stocks.splice(this.id, 1);
             colors.push(colors.splice(this.id, 1));
