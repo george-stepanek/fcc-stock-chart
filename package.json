@@ -1,5 +1,5 @@
 {
-  "name": "fcc-fcc-stock-chart",
+  "name": "fcc-stock-chart",
   "main": "server.js",
   "repository": {
     "type": "git",
@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "dotenv": "^1.2.0",
-    "express": "^4.12.4"
+    "express": "^4.12.4",
+    "mongoose": "^4.3.1"
   }
 }

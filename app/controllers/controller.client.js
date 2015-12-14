@@ -7,7 +7,15 @@
    var colors = ['blue', 'red', 'green', 'purple', 'orange'];
    var stocks = [];
    
-   $('input').focus();
+   $(document).ready(function () {
+      $.get(window.location.origin + '/api/stocks/', function (results) {
+         stocks = results.map(function(obj) { 
+            return obj.code;
+         });
+         displayStocks();
+      });
+   });
+   
    $('input').keypress(function (e) {
       if(e.keyCode == 13) {
          $('.find-stock').click();
@@ -20,10 +28,14 @@
    function findStock () {
       
       if(stocks.length == colors.length) {
-         stocks.shift();
+         var removed = stocks.shift();
+         $.ajax({url: window.location.origin + '/api/stock/' + removed, type: 'DELETE', success: function (result) { }});
          colors.push(colors.shift());
       }
-      stocks.push($('input').val().toUpperCase());
+      
+      var code = $('input').val().toUpperCase();
+      $.post(window.location.origin + '/api/stock/' + code, function (result) { });
+      stocks.push(code);
       $('input').val('');
       displayStocks();
    }
@@ -39,7 +51,8 @@
             colors[stock] + '">' + stocks[stock] + '&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove-sign"></span></button>');
             
          $('.stock-button').click(function () {
-            stocks.splice(this.id, 1);
+            var removed = stocks.splice(this.id, 1);
+            $.ajax({url: window.location.origin + '/api/stock/' + removed[0], type: 'DELETE', success: function (result) { }});
             colors.push(colors.splice(this.id, 1));
             displayStocks();
          });
@@ -72,6 +85,8 @@
             }
          }});
       }
+      
+      $('input').focus();
       
       if(stocks.length > 0) {
          var data = new google.visualization.DataTable();
