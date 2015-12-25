@@ -92,6 +92,15 @@
                   }
                }
             }
+         }, error: function (request, textStatus, errorThrown) { 
+               for(var i = 0; i < vals.length; i++) {
+                  vals[i].push(null);
+               } /*
+               var stockCode = stocks.pop();
+               $.ajax({url: window.location.origin + '/api/stock/' + stockCode, type: 'DELETE', success: function (result) { }});
+               displayStocks();
+               alert("Stock " + stockCode + " cannot be found.");
+               return; */
          }});
       }
       
