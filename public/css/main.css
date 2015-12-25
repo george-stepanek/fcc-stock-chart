@@ -1,7 +1,7 @@
 @import url(//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css);
 @import url(//fonts.googleapis.com/css?family=Squada+One);
 
-.navbar-text {
+.navbar-header {
     font-family: 'Squada One', sans-serif;
     font-size: 200%;
 }

@@ -7,13 +7,18 @@
    var colors = ['blue', 'red', 'green', 'purple', 'orange'];
    var stocks = [];
    
-   $(document).ready(function () {
+   function refreshStocks () {
       $.get(window.location.origin + '/api/stocks/', function (results) {
          stocks = results.map(function(obj) { 
             return obj.code;
          });
          displayStocks();
-      });
+      });      
+   }
+   
+   $(document).ready(function () {
+      refreshStocks();
+      io(window.location.origin).on('event', refreshStocks);
    });
    
    $('input').keypress(function (e) {
@@ -35,9 +40,7 @@
       
       var code = $('input').val().toUpperCase();
       $.post(window.location.origin + '/api/stock/' + code, function (result) { });
-      stocks.push(code);
       $('input').val('');
-      displayStocks();
    }
    
    function displayStocks () {
@@ -54,7 +57,6 @@
             var removed = stocks.splice(this.id, 1);
             $.ajax({url: window.location.origin + '/api/stock/' + removed[0], type: 'DELETE', success: function (result) { }});
             colors.push(colors.splice(this.id, 1));
-            displayStocks();
          });
          
          var apiUrl = "https://www.quandl.com/api/v3/datasets/WIKI/" + stocks[stock] +

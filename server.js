@@ -11,10 +11,13 @@ mongoose.connect(process.env.MONGOLAB_URI);
 
 app.use('/controllers', express.static(process.cwd() + '/app/controllers'));
 app.use('/public', express.static(process.cwd() + '/public'));
-
-routes(app);
+	
+var io;
+var refreshAll = function (req, res, next) { io.emit('event'); return next(); };
+routes(app, refreshAll);
 
 var port = process.env.PORT || 8080;
-app.listen(port,  function () {
+var server = app.listen(port,  function () {
 	console.log('Node.js listening on port ' + port + '...');
 });
+io = require('socket.io').listen(server);

@@ -1,7 +1,7 @@
 var Stocks = require('../models/stocks.js');
 
 function Handler () {
-    
+
 	this.getStocks = function(req, res) {
 		Stocks.find({ })/*.sort({ 'when': 'desc'})*/.exec(function (err, result) { if (err) { throw err; } res.json(result); });			
 	};

@@ -3,8 +3,8 @@
 var path = process.cwd();
 var Handler = require(path + '/app/controllers/handler.server.js');
 
-module.exports = function (app) {
-    
+module.exports = function (app, refreshAll) {
+
 	app.route('/').get(function (req, res) { res.sendFile(path + '/public/index.html');	});
 	
 	var handler = new Handler();			
@@ -12,6 +12,6 @@ module.exports = function (app) {
 		.get(handler.getStocks);
 		
 	app.route('/api/stock/:code')
-		.post(handler.addStock)
-		.delete(handler.deleteStock);
+		.post(refreshAll, handler.addStock)
+		.delete(refreshAll, handler.deleteStock);
 };
