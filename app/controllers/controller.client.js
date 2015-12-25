@@ -4,7 +4,7 @@
    
    google.load("visualization", "1", {packages:["corechart"]});
    
-   var colors = ['blue', 'red', 'green', 'purple', 'orange'];
+   var colors = ['blue', 'green', 'purple', 'orange', 'black'];
    var stocks = [];
    
    function refreshStocks () {
@@ -53,6 +53,7 @@
 
       var vals = [];
       $('#stock-buttons').empty();
+      $('#errors').empty();
       
       for(var stock = 0; stock < stocks.length; stock++ ) {
          
@@ -95,12 +96,8 @@
          }, error: function (request, textStatus, errorThrown) { 
                for(var i = 0; i < vals.length; i++) {
                   vals[i].push(null);
-               } /*
-               var stockCode = stocks.pop();
-               $.ajax({url: window.location.origin + '/api/stock/' + stockCode, type: 'DELETE', success: function (result) { }});
-               displayStocks();
-               alert("Stock " + stockCode + " cannot be found.");
-               return; */
+               }
+               $('#errors').html($('#errors').html() + " (" + stocks[vals[0].length - 2] + " not found)");
          }});
       }
       
