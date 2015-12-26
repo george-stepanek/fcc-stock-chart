@@ -36,25 +36,32 @@
       
    function findStock () {
       
-      if(stocks.length == colors.length) {
-         var removed = stocks.shift();
-         $.ajax({url: window.location.origin + '/api/stock/' + removed, type: 'DELETE', success: function (result) { }});
-         colors.push(colors.shift());
-      }
-      
       var code = $('input').val().toUpperCase();
-      $.post(window.location.origin + '/api/stock/' + code, function (result) { });
       $('input').val('');
-      stocks.push(code);
-      displayStocks();
+      
+      var apiUrl = "https://www.quandl.com/api/v3/datasets/WIKI/" + code +
+         ".json?start_date=2015-01-01&end_date=2016-01-01&order=asc&column_index=4&api_key=yxUrG7eH5x2MHTCQG_1M";
+
+      $.ajax({url: apiUrl, async: false, success: function(results) {
+         if(stocks.length == colors.length) {
+            var removed = stocks.shift();
+            $.ajax({url: window.location.origin + '/api/stock/' + removed, type: 'DELETE', success: function (result) { }});
+            colors.push(colors.shift());
+         }
+         
+         $.post(window.location.origin + '/api/stock/' + code, function (result) { });
+         stocks.push(code);
+         displayStocks();
+      }, error: function (request, textStatus, errorThrown) { 
+         alert("Sorry, cannot find stock code " + code);
+      }});
    }
    
    function displayStocks () {
 
       var vals = [];
       $('#stock-buttons').empty();
-      $('#errors').empty();
-      
+
       for(var stock = 0; stock < stocks.length; stock++ ) {
          
          $('#stock-buttons').html($('#stock-buttons').html() + '<button id="' + stock + '" class="btn stock-button" style="color: ' + 
@@ -94,10 +101,9 @@
                }
             }
          }, error: function (request, textStatus, errorThrown) { 
-               for(var i = 0; i < vals.length; i++) {
-                  vals[i].push(null);
-               }
-               $('#errors').html($('#errors').html() + " (" + stocks[vals[0].length - 2] + " not found)");
+            for(var i = 0; i < vals.length; i++) {
+               vals[i].push(null);
+            }
          }});
       }
       
